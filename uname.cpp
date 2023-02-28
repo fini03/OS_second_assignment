@@ -16,6 +16,5 @@ int main() {
     // Output the version of the operating system
     std::cout << "Version: " << sysinfo.version << "\n";
 
-    // Return 0 to indicate successful execution
     return 0;
 }
