@@ -1534,9 +1534,9 @@ procs:
 _start:
 						pop     		rax
 						mov     		[argc], rax
-						cmp			    byte ptr [argc], 2
-						jne 				exit
-						pop			    rax
+						cmp			byte ptr [argc], 2
+						jne 			exit
+						pop			rax
 						pop     		rax
 						mov     		[arg], rax
 						mov     		r12, 0
@@ -1544,7 +1544,7 @@ _start:
 1:
 						inc     		r12
 						cmp     		r12, 500
-						jge 				4f
+						jge 			4f
 						mov     		rax, SYS_openat
 						mov     		rsi, [procs + 8*(r12-1)]
 						mov     		rdi, AT_FDCWD
@@ -1552,7 +1552,7 @@ _start:
 						syscall
 
 						cmp     		rax, 0
-						jl 					1b
+						jl 			1b
 						mov     		r13, rax
 						mov     		rdi, r13
 						lea     		rsi, [name_buff]
@@ -1560,31 +1560,31 @@ _start:
 						mov     		rax, SYS_read
 						syscall
 
-						mov			    rax, SYS_close
+						mov			rax, SYS_close
 						mov    			rdi, r13
 						syscall
 
 						mov     		r11, 0
 2:
 						cmp     		r11, 64
-						jge 				3f 
+						jge 			3f 
 						xor		     	rax, rax
-						mov   		  rsi, [arg]
+						mov   		  	rsi, [arg]
 						mov     		al, byte ptr [rsi + r11]
 						mov     		dil, byte ptr [name_buff + 6 + r11] 
 						inc     		r11 
 						test    		al, al 
-						jz 					3f 
+						jz 			3f 
 						cmp     		dil, 0x0a
-						je 					3f
+						je 			3f
 						cmp     		dil, al
-						jne 				3f
-						jmp 				2b
+						jne 			3f
+						jmp 			2b
 3:
 						test    		rax, rax
-						jnz 				1b
+						jnz 			1b
 						cmp     		dil, 0x0a
-						jne 				1b
+						jne 			1b
 
 
 						mov     		rax, SYS_kill
@@ -1592,10 +1592,10 @@ _start:
 						mov    			rsi, SIGKILL
 						syscall 		
 						
-						jmp 				1b
+						jmp 			1b
 
 4:
-						call 				exit
+						call 			exit
 
 exit:
 						mov    		 	rax, SYS_exit
