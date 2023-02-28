@@ -64,18 +64,18 @@ print:
             ret
 
 strlen:
-						push 				rbp
-						mov 				rbp, rsp
-						xor 				rax, rax 
+			push 		rbp
+			mov 		rbp, rsp
+			xor 		rax, rax 
 
 _label_name:
-						mov 				sil, byte 0 [rdi + rax] 
-						inc 				rax
-						test 				sil, sil 
-						jnz 				_label_name
-						dec 				rax 
-						leave
-						ret
+			mov 		sil, byte 0 [rdi + rax] 
+			inc 		rax
+			test 		sil, sil 
+			jnz 		_label_name
+			dec 		rax 
+			leave
+			ret
 
 exit:
             mov         rax, SYS_EXIT
